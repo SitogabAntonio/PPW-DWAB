@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" href="bg/favicon.ico" type="image/x-icon">
-    <title>DWAB | Login</title>
+    <title>DWAB | Login </title>
     <link rel="stylesheet" href="css/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
