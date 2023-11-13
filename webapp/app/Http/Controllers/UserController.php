@@ -20,10 +20,7 @@ class UserController extends Controller
                                                 'email'=>$email,
                                                 'password'=>$password
     ]);
-    if ($isInsertSuccress) {
-        return redirect('login'); // Redirect ke rute login
-    } else {
-        return redirect()->back(); // Redirect kembali jika pendaftaran gagal
-    }
+        if($isInsertSuccress) echo '';
+        else echo '';
     }
 }

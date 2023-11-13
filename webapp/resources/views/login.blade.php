@@ -87,7 +87,7 @@
                     <div class="remember-password">
                         <label for=""><input type="checkbox">I agree with this statment</label>
                     </div>
-                    <button class="btn">Create Acount</button>
+                    <button class="btn">Create Account</button>
                     <div class="create-account">
                         <p>Already Have An Account? <a href="#" class="login-link">Sign In</a></p>
                     </div>

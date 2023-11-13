@@ -37,3 +37,15 @@ Route::get('/subcategory', function () {
     return view('subcategory');
 });
 
+Route::get('/kresensia', function () {
+    return view('kresensia');
+});
+
+Route::get('/glorya', function () {
+    return view('glorya');
+});
+
+Route::get('/deby', function () {
+    return view('deby');
+});
+

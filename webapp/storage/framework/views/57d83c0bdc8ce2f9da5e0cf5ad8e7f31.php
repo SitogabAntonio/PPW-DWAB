@@ -54,7 +54,7 @@
                         <label for=""><input type="checkbox">Remember Me</label>
                         <a href="#">Forget Password</a>
                     </div>
-                    <button class="btn">Login In</button>
+                    <button class="btn">Login</button>
                     <div class="create-account">
                         <p>Create A New Account? <a href="#" class="register-link">Sign Up</a></p>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="remember-password">
                         <label for=""><input type="checkbox">I agree with this statment</label>
                     </div>
-                    <button class="btn">Login In</button>
+                    <button class="btn">Create Account</button>
                     <div class="create-account">
                         <p>Already Have An Account? <a href="#" class="login-link">Sign In</a></p>
                     </div>
@@ -95,13 +95,6 @@
             </div>
         </div>
     </div>
-
-    <button id="showSuccessButton">Show Success Popup</button>
-    <button id="showErrorButton">Show Error Popup</button>
-
-    <div class="popup" id="successPopup">Create account berhasil</div>
-    <div class="popup" id="errorPopup">Create account gagal</div>
-
     <script src="js/login.js"></script>
 </body>
 

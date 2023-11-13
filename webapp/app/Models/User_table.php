@@ -11,4 +11,3 @@ class User_table extends Model
     public $incrementing = true;
     public $timestamp = false;
 }
-

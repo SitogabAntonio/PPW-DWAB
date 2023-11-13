@@ -1,18 +1,8 @@
-$(document).ready(function() {
-    $('.profile img').click(function() {
-        window.location.href = 'profile.blade.php';
-    });
-});
+// Temukan elemen gambar berdasarkan id
+var profileImage = document.getElementById("profileImage");
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const cancelButton = document.getElementById("cancelButton");
-
-    if (cancelButton) {
-        cancelButton.addEventListener("click", function () {
-            // Redirect to home.blade.php
-            window.location.href = "home";
-        });
-    }
-});
-
+// Tambahkan event click ke gambar
+profileImage.onclick = function() {
+  // Arahkan pengguna ke halaman "profile.blade.php"
+  window.location.href = "profile";
+};
