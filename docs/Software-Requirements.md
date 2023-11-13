@@ -4,16 +4,17 @@ On this page we provide the lists of the required software both in the productio
 
 ## Production Environment
 
-- PHP ```^8.x.x``` runtime.
-- Composer PHP package manager ```^2.x.x```.
-- MariaDB ```^10.6.x```.
-- ...
+- PHP ^8.2.11 runtime.
+- Composer PHP package manager ^2.6.4.
+- MySQL ^8.0.34.
 
 ## Development Environment
 
 During the development, all the required software mentioned in the production section are also needed with the following additions:
-- NodeJS ```^14.x.x``` with ```npm``` package manager.
-- ...
+- Bootstrap ^5.3.x.
+- XAMPP ^8.2.4.
+- Laravel ^10.x.
+- Visual Studio Code ^1.82.2.
 
 ## Related
 
