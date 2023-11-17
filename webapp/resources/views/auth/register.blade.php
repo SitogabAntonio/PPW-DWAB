@@ -85,7 +85,7 @@
                         Create Account
                     </button>
                     <div class="create-account">
-                        <p>Already Have An Account? <a href="#" class="login-link">Sign In</a></p>
+                        <p>Already Have An Account? <a href="{{ route('login') }}" class="login-link">Sign In</a></p>
                     </div>
                 </form>
             </div>

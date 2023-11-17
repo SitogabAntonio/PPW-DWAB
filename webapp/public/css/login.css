@@ -212,3 +212,14 @@ body {
     cursor: pointer; /* Ubah kursor saat dihover untuk menunjukkan bisa diklik */
     /* Atur gaya lainnya seperti font, ukuran, dll. sesuai keinginan Anda */
 }
+
+/* Add this CSS code to your existing CSS file or create a new one */
+.sign-up-link {
+    color: white; /* Set the text color to white */
+    text-decoration: none; /* Remove the default underline style for links */
+    margin-left: 88px;
+}
+/* Optionally, you can add hover effect to the link */
+.sign-up-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

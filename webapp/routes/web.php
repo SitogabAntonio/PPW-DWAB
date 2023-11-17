@@ -24,3 +24,14 @@ Route::get('/profile', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route for the registration page
+Route::get('/register', function () {
+    return view('auth.register'); // Specify the directory structure with dot notation
+})->name('register');
+
+
+// Route for the login page
+Route::get('/login', function () {
+    return view('auth.login'); // Assuming your login blade file is named login.blade.php
+})->name('login');
