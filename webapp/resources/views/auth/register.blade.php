@@ -10,12 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
 </head>
 
 <body>
     <!-- LOGIN FORM CREATION -->
-    <h2 class="logo"><img src="image/putih-transparan.png"></h2>
+    <h2 class="logo">
+        <img src="image/putih-transparan.png">
+    </h2>
     <div class="background"></div>
     <div class="container">
         <div class="item">
@@ -38,56 +39,51 @@
         </div>
         <div class="login-section">
             <div class="form-box login">
-                <form action="home">
-                    <h2>Sign In</h2>
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-envelope'></i></span>
-                        <input type="email" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-lock-alt'></i></span>
-                        <input type="password" required>
-                        <label>Password</label>
-                    </div>
-                    <div class="remember-password">
-                        <label for=""><input type="checkbox">Remember Me</label>
-                        <a href="#">Forget Password</a>
-                    </div>
-                    <button class="btn">Login</button>
-                    <div class="create-account">
-                        <p>Create A New Account? <a href="#" class="register-link">Sign Up</a></p>
-                    </div>
-                </form>
-            </div>
-
-            <div class="form-box register">
-                <form action="dataInsert" method="post" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <h2>Sign Up</h2>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-user'></i></span>
                         <label for="username" class="control-label"></label>
-                        <input type="text" name="username" class="form-control" required>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         <label>Username</label>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-envelope'></i></span>
                         <label for="email" class="control-label"></label>
-                        <input type="text" name="email" class="form-control" required>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                         <label>Email</label>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-lock-alt'></i></span>
                         <label for="password" class="control-label"></label>
-                        <input type="password" name="password" class="form-control" required>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                         <label>Password</label>
-
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="remember-password">
-                        <label for=""><input type="checkbox">I agree with this statment</label>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+                        <label for="password" class="control-label"></label>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <label>Confirm Password</label>
                     </div>
-                    <button class="btn">Create Account</button>
+                    <button type="submit" class="btn btn-primary">
+                        Create Account
+                    </button>
                     <div class="create-account">
                         <p>Already Have An Account? <a href="#" class="login-link">Sign In</a></p>
                     </div>

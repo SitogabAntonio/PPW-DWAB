@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,37 +14,13 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('landing');
-});
-
-Route::get('/login', [UserController::class, 'loginIndex']);
-Route::post('dataInsert', [UserController::class, 'DataInsert']);
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/category', function () {
-    return view('category');
+    return view('welcome');
 });
 
 Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/subcategory', function () {
-    return view('subcategory');
-});
+Auth::routes();
 
-Route::get('/kresensia', function () {
-    return view('kresensia');
-});
-
-Route::get('/glorya', function () {
-    return view('glorya');
-});
-
-Route::get('/deby', function () {
-    return view('deby');
-});
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
