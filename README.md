@@ -1,4 +1,4 @@
-# DWAB - ConnectHobby 
+# DWAB - ConnectHobby
 
 DWAB is an abbreviation of the names of our group members, namely D (Daniel), W (Weny), A (Antonio), B (Bintang). DWAB ConnectHobby is formed for students with similar hobbies to communicate quickly and efficiently.
 
@@ -10,7 +10,7 @@ Find the [codebase here](/webapp).
 
 ## Contributors
 
-+ 12S21006 [Weny S.M. Sitinjak](https://github.com/wenysiholmaritositinjak)
-+ 12S21015 [Sitogab Antonio Girsang](https://github.com/SitogabAntonio)
-+ 12S21023 [Bintang Margaretha Situmorang](https://github.com/bintangmargarethasitumorang)
-+ 12S21031 [Daniel Augustian Girsang](https://github.com/danielaugust67)
+- 12S21006 [Weny S.M. Sitinjak](https://github.com/wenysiholmaritositinjak)
+- 12S21015 [Sitogab Antonio Girsang](https://github.com/SitogabAntonio)
+- 12S21023 [Bintang Margaretha Situmorang](https://github.com/bintangmargarethasitumorang)
+- 12S21031 [Daniel Augustian Girsang](https://github.com/danielaugust67)
