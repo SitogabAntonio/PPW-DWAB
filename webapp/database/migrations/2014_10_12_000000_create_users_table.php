@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('profile_path')->nullable(); // Tambah kolom profile_path
+            $table->string('no_telp')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
