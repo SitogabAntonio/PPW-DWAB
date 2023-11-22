@@ -2,88 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\user;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Valnameator;
+use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller
+class userController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        $users = User::all();
-        return UserResource::collection($users);
-    }
+        $users = user::all();
 
-    public function show($name)
-    {
-        $user = User::where('name', $name)->first();
+        $formattedusers = $users->map(function ($user) {
+            return [
+                'user' => $user,
+                'links' => $user->getLinks(),
+            ];
+        });
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        return new UserResource($user);
-    }
-
-    public function store(Request $request)
-    {
-        $valnameator = Valnameator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string',
-            'password' => 'required|string',
-            'no_telp' => 'nullable|string',
-            'gender' => 'nullable|string',
-            'status' => 'nullable|string',
+        return response()->json([
+            'users' => $formattedusers,
         ]);
-
-        if ($valnameator->fails()) {
-            return response()->json(['error' => $valnameator->errors()], 422);
-        }
-
-        $user = User::create($request->all());
-
-        return new UserResource($user);
     }
 
-    public function update(Request $request, $name)
+    public function show($name): JsonResponse
     {
-        $user = User::find($name);
+        $user = user::findOrFail($name);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        $valnameator = Valnameator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string',
-            'password' => 'required|string',
-            'no_telp' => 'nullable|string',
-            'gender' => 'nullable|string',
-            'status' => 'nullable|string',
+        return response()->json([
+            'user' => $user,
+            'links' => $user->getLinks(),
         ]);
+    }
 
-        if ($valnameator->fails()) {
-            return response()->json(['error' => $valnameator->errors()], 422);
-        }
-
+    public function update(Request $request, $name): JsonResponse
+    {
+        $user = user::findOrFail($name);
         $user->update($request->all());
 
-        return new UserResource($user);
+        return response()->json([
+            'message' => 'user updated successfully',
+            'user' => $user,
+            'links' => $user->getLinks(),
+        ]);
     }
 
-    public function destroy($name)
+    public function destroy($name): JsonResponse
     {
-        $user = user::find($name);
-    
-        if (!$user) {
-            return response()->json(['error' => 'user not found'], 404);
-        }
-    
+        $user = user::findOrFail($name);
         $user->delete();
-    
-        return response()->json(['message' => 'user deleted successfully']);
-    }
-    
-}
 
+        return response()->json([
+            'message' => 'user deleted successfully',
+        ]);
+    }
+}

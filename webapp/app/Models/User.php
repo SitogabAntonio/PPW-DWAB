@@ -85,4 +85,31 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function getLinks(): array
+    {
+        $baseUri = '/api/users/' . $this->name;
+    
+        return [
+            'self' => [
+                'href' => $baseUri,
+                'method' => 'GET',
+                'type' => 'application/json',
+                'description' => 'Get user details',
+            ],
+            'update' => [
+                'href' => $baseUri . '/update',
+                'method' => 'PUT',
+                'type' => 'application/json',
+                'description' => 'Update user details',
+            ],
+            'delete' => [
+                'href' => $baseUri . '/delete',
+                'method' => 'DELETE',
+                'type' => 'application/json',
+                'description' => 'Delete user',
+            ],
+        ];
+    }
+    
 }
