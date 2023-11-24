@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommunityController;
 
 
 /*
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route for UserController
 Route::apiResource('users', UserController::class);
+
+// Route for CommunityController
+Route::apiResource('communities', CommunityController::class);
