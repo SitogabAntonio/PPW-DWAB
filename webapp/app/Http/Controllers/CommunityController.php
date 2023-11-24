@@ -2,77 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Community;
-use App\Http\Resources\CommunityResource;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class CommunityController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $communities = Community::all();
-        return CommunityResource::collection($communities);
-    }
+        $formattedCommunities = $communities->map(function ($community) {
+            return [
+                'community' => $community,
+                'links' => $community->getLinks(),
+            ];
+        });
 
-    public function show($community_name)
-    {
-        $community = Community::where('community', $community_name)->first();
-
-        if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
-        }
-
-        return new CommunityResource($community);
-    }
-
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'community' => 'required|string|max:255',
-            'profile_path' => 'required|string',
-            'deskripsi' => 'required|string',
+        return response()->json([
+            'communities' => $formattedCommunities,
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
-
-        $community = Community::create($request->all());
-        return new CommunityResource($community);
     }
 
-    public function update(Request $request, $community_name)
+    public function show($community_name): JsonResponse
     {
-        $community = Community::where('community', $community_name)->first();
+        $community = community::findOrFail($community_name);
 
-        if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'community' => 'required|string|max:255',
-            'profile_path' => 'required|string',
-            'deskripsi' => 'required|string',
+        return response()->json([
+            'community' => $community,
+            'links' => $community->getLinks(),
         ]);
+    }
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
-
+    public function update(Request $request, $community_name): JsonResponse
+    {
+        $community = community::findOrFail($community_name);
         $community->update($request->all());
-        return new CommunityResource($community);
+
+        return response()->json([
+            'message' => 'community updated successfully',
+            'community' => $community,
+            'links' => $community->getLinks(),
+        ]);
     }
 
-    public function destroy($community_name)
+    public function destroy($community_name): JsonResponse
     {
-        $community = Community::where('community', $community_name)->first();
-
-        if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
-        }
-
+        $community = community::findOrFail($community_name);
         $community->delete();
-        return response()->json(['message' => 'Community deleted successfully']);
+
+        return response()->json([
+            'message' => 'community deleted successfully',
+        ]);
     }
 }
