@@ -22,7 +22,8 @@ class Community extends Model
     // Metode untuk mendapatkan detail komunitas berdasarkan nama komunitas
     public static function getCommunityByName($community_name)
     {
-        return self::find($community_name);
+        return self::where('community_name', $community_name)->first();
+
     }
    
     // Metode untuk membuat komunitas baru
@@ -45,7 +46,7 @@ class Community extends Model
     // Metode untuk menghapus komunitas berdasarkan nama komunitas
     public static function deleteCommunity($community_name)
     {
-        $community = self::find($community_name);
+        $community = self::where('community_name', $community_name)->first();
         
         if ($community) {
             $community->delete();
