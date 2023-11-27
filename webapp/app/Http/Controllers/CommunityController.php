@@ -2,77 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Community;
-use App\Http\Resources\CommunityResource;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
+
 
 class CommunityController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $communities = Community::all();
-        return CommunityResource::collection($communities);
+        $formattedCommunities = $communities->map(function ($community) {
+            return [
+                'community' => $community,
+                'links' => $community->getLinks(),
+            ];
+        });
+
+        return response()->json([
+            'communities' => $formattedCommunities,
+        ]);
     }
 
-    public function show($community_name)
+    public function show($community_name): JsonResponse
     {
-        $community = Community::where('community', $community_name)->first();
+        $community = Community::getcommunityByName($community_name);
 
-        if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
+        if ($community) {
+            return response()->json([
+                'community' => $community,
+                'links' => $community->getLinks(),
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'community not found',
+            ], 404);
         }
-
-        return new CommunityResource($community);
+        
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
+        // Validate the incoming request data
         $validator = Validator::make($request->all(), [
-            'community' => 'required|string|max:255',
-            'profile_path' => 'required|string',
+            'community_name' => 'required|string|unique:communities',
+            'profile_path' => 'nullable|string',
             'deskripsi' => 'required|string',
         ]);
 
+        // If validation fails, return an error response
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 400);
         }
 
-        $community = Community::create($request->all());
-        return new CommunityResource($community);
-    }
+        // Create a new community using the provided data
+        $community = Community::createCommunity($request->all());
 
-    public function update(Request $request, $community_name)
-    {
-        $community = Community::where('community', $community_name)->first();
-
-        if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'community' => 'required|string|max:255',
-            'profile_path' => 'required|string',
-            'deskripsi' => 'required|string',
+        return response()->json([
+            'message' => 'Community created successfully',
+            'community' => $community,
+            'links' => $community->getLinks(),
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
-
-        $community->update($request->all());
-        return new CommunityResource($community);
     }
 
-    public function destroy($community_name)
+    public function destroy($community_name): JsonResponse
     {
-        $community = Community::where('community', $community_name)->first();
+        $community = Community::where('community_name', $community_name)->first();
 
         if (!$community) {
-            return response()->json(['error' => 'Community not found'], 404);
+            return response()->json([
+                'error' => 'Community not found',
+            ], 404);
         }
 
         $community->delete();
-        return response()->json(['message' => 'Community deleted successfully']);
+
+        return response()->json([
+            'message' => 'Community deleted successfully',
+        ]);
     }
 }

@@ -22,9 +22,9 @@ class Community extends Model
     // Metode untuk mendapatkan detail komunitas berdasarkan nama komunitas
     public static function getCommunityByName($community_name)
     {
-        return self::find($community_name);
+        return self::where('community_name', $community_name)->first()  ;
     }
-   
+
     // Metode untuk membuat komunitas baru
     public static function createCommunity($data)
     {
@@ -35,22 +35,50 @@ class Community extends Model
     public static function updateCommunity($community_name, $data)
     {
         $community = self::find($community_name);
+        
         if ($community) {
             $community->update($data);
             return $community;
         }
-    return null;
+        
+        return null;
     }
-   
+
     // Metode untuk menghapus komunitas berdasarkan nama komunitas
     public static function deleteCommunity($community_name)
     {
         $community = self::find($community_name);
+        
         if ($community) {
             $community->delete();
             return true;
         }
+        
         return false;
     }
+
+    public function getLinks(): array
+    {
+        $baseUri = '/api/communities/' . $this->community_name;
+        return [
+            'self' => [
+                'href' => $baseUri,
+                'method' => 'GET',
+                'type' => 'application/json',
+                'description' => 'Get community details',
+            ],
+            'update' => [
+                'href' => $baseUri . '/update',
+                'method' => 'PUT',
+                'type' => 'application/json',
+                'description' => 'Update community details',
+            ],
+            'delete' => [
+                'href' => $baseUri . '/delete',
+                'method' => 'DELETE',
+                'type' => 'application/json',
+                'description' => 'Delete community',
+            ],
+        ];
+    }
 }
-   

@@ -2,17 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use App\Models\community_name;
+use App\Models\Community;
 
 class CommunitiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         // Contoh data komunitas
         $communities = [
@@ -44,7 +42,9 @@ class CommunitiesTableSeeder extends Seeder
         ];
 
         // Menyimpan data komunitas ke dalam database
-        DB::table('communities')->insert($communities);
+        foreach ($communities as $community){
+            Community::create($community);
+        }
     }
 }
 

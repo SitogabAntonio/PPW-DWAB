@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -67,7 +68,7 @@ class User extends Authenticatable
     // Contoh metode untuk mengupdate user berdasarkan nama
     public static function updateUser($name, $data)
     {
-        $user = self::where('name', $name)->first();
+        $user = self::find($name);
         if ($user) {
             $user->update($data);
             return $user;
@@ -78,7 +79,7 @@ class User extends Authenticatable
     // Contoh metode untuk menghapus Users berdasarkan nama
     public static function deleteUser($name)
     {
-        $user = self::where('name', $name)->first();
+        $user = self::find($name);
         if ($user) {
             $user->delete();
             return true;
@@ -86,6 +87,7 @@ class User extends Authenticatable
         return false;
     }
 
+    
     public function getLinks(): array
     {
         $baseUri = '/api/users/' . $this->name;
