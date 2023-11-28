@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
 
-class userController extends Controller
+
+class UserController extends Controller
 {
     public function index(): JsonResponse
     {
-        $users = user::all();
+        $users = User::all();
 
-        $formattedusers = $users->map(function ($user) {
+        $formattedUsers = $users->map(function ($user) {
             return [
                 'user' => $user,
                 'links' => $user->getLinks(),
@@ -20,27 +22,49 @@ class userController extends Controller
         });
 
         return response()->json([
-            'users' => $formattedusers,
+            'users' => $formattedUsers,
         ]);
     }
 
     public function show($name): JsonResponse
     {
-        $user = user::findOrFail($name);
+        $user = User::getUserByName($name);
 
-        return response()->json([
-            'user' => $user,
-            'links' => $user->getLinks(),
-        ]);
+        if ($user) {
+            return response()->json([
+                'user' => $user,
+                'links' => $user->getLinks(),
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'User not found',
+            ], 404);
+        }
     }
 
-    public function update(Request $request, $name): JsonResponse
+
+    public function store(Request $request): JsonResponse
     {
-        $user = user::findOrFail($name);
-        $user->update($request->all());
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string',
+            'no_telp' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'status' => 'nullable|string'
+        ]);
+
+        // If validation fails, return an error response
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        // Create a new user using the provided data
+        $user = User::createUsers($request->all());
 
         return response()->json([
-            'message' => 'user updated successfully',
+            'message' => 'User created successfully',
             'user' => $user,
             'links' => $user->getLinks(),
         ]);
@@ -48,11 +72,18 @@ class userController extends Controller
 
     public function destroy($name): JsonResponse
     {
-        $user = user::findOrFail($name);
+        $user = User::where('name', $name)->first();
+
+        if (!$user) {
+            return response()->json([
+                'error' => 'User not found',
+            ], 404);
+        }
+
         $user->delete();
 
         return response()->json([
-            'message' => 'user deleted successfully',
+            'message' => 'User deleted successfully',
         ]);
     }
 }
