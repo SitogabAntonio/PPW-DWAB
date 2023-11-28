@@ -4,15 +4,15 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Tambah Post
+                Edit Post
             </div>
             <div class="card-body">
-                <form action="{{ url('post') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('post/' .$post->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
-
+                    @method('put')
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Title</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$post->title}}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -24,7 +24,7 @@
                         <select class="form-select" aria-label="Default select example" name="category_id">
                             <option selected>Pilih Kategori</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" @if($post->category_id == $category->id) selected="selected" @endif>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -32,6 +32,7 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Gambar</label>
                         <input class="form-control" type="file" name="image" id="formFile">
+                        <img src="{{url('uploads/post/' .$post->image)}}" class="img-fluid">
                     </div>
 
                     <div class="mb-3">
@@ -46,20 +47,20 @@
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1" checked>
+                        <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1"  @if($post->status == 1) checked="checked" @endif>
                         <label class="form-check-label" for="flexRadioDefault1 ">
                             Publish
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2">
+                        <input class="form-check-input" type="radio" name="status" value="0" id="flexRadioDefault2" @if($post->status == 0) checked="checked" @endif>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Draft
                         </label>
                     </div>
 
                     <div class="my-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

@@ -8,6 +8,8 @@
     use App\Models\Post;
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\File;
+
 
     class PostController extends Controller
     {
@@ -50,6 +52,49 @@
             }
 
             $post->save();
-            return redirect('posts')->with('message', 'Post berhasil ditambahkan');
+            return redirect('post')->with('message', 'Post berhasil ditambahkan');
         }
+
+        public function edit(Post $post)
+        {
+            $categories = Category::all(); // Mengubah $category menjadi $categories
+            return view('admin.post.edit', compact('post', 'categories'));
+        }
+
+        public function update(PostFormRequest $request, $post)
+        {
+            $validatedData = $request->validated(); // Mengubah menjadi $validatedData
+            $post = Post::findOrFail($post); // Mengubah $post menjadi $postId
+            $post->title = $validatedData['title'];
+            $post->category_id = $validatedData['category_id'];
+            $post->description = $validatedData['description'];
+            $post->status = $validatedData['status'];
+
+            if ($request->hasFile('image')) {
+                $path = 'uploads/post/' . $post->image; // Mengubah 'upload' menjadi 'uploads'
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+                $file = $request->file('image');
+                $ext = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $file->move('uploads/post/', $filename);
+                $post->image = $filename;
+            }
+
+            $post->update(); // Menggunakan save() daripada update()
+            return redirect('post')->with('message', 'Post berhasil diupdate');
+        }
+
+        public function destroy(int $post_id){
+            $post = Post::findOrFail($post_id);
+            $path = 'uploads/post/' . $post->image; // Mengubah 'upload' menjadi 'uploads'
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            $post->delete();
+            return redirect()->back()->with('message', 'Post berhasil dihapus');
+        }
+
+
     }

@@ -68,7 +68,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($category_id);
         $category->delete();
-        return redirect()->back()->with('messages', 'Category berhasil diupdate');
+        return redirect()->back()->with('messages', 'Category berhasil dihapus');
     }
 }
 

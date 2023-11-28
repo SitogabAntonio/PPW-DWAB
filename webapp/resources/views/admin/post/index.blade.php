@@ -25,10 +25,10 @@
     @forelse($posts as $key => $data)
     <tr>
       <th>{{$key+1}}</th>
-      <td>{{$data->name}}</td>
+      <td>{{$data->title}}</td>
       <td>{{$data->slug}}</td>
       <td>
-        <a href="{{ url('posts/edit/' . $data->id) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ url('post/edit/' . $data->id) }}" class="btn btn-primary">Edit</a>
         @include('admin.post.delete')
       </td>
     </tr>
