@@ -18,17 +18,14 @@ use App\Http\Controllers\Admin\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route HomePage
+Route::get('/', [HomeController::class,'index']);
+Route::get('/post/{post_id}', [HomeController::class,'show']);
 
-Route::get('/profile', function () {
-    return view('profile');
-});
-
+//Route Middleware
 Auth::routes();
 
-Route::middleware(['auth'])->group(function (){
+Route::prefix('admin')->middleware(['auth'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Route Category

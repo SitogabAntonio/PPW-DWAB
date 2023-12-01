@@ -7,7 +7,7 @@
                 Edit Post
             </div>
             <div class="card-body">
-                <form action="{{ url('post/' .$post->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('admin/post/' .$post->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="mb-3">

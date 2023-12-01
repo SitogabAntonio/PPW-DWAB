@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-item-center">
             <h4>Category</h4>
-            <a href="{{ url('categories/create') }}" class="btn btn-primary">Tambah Category</a>
+            <a href="{{ url('admin/categories/create') }}" class="btn btn-primary">Tambah Category</a>
         </div>
     <table class="table">
   <thead>
@@ -28,7 +28,7 @@
       <td>{{$data->name}}</td>
       <td>{{$data->slug}}</td>
       <td>
-        <a href="{{ url('categories/edit/' . $data->id) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ url('admin/categories/edit/' . $data->id) }}" class="btn btn-primary">Edit</a>
         @include('admin.category.delete')
       </td>
     </tr>

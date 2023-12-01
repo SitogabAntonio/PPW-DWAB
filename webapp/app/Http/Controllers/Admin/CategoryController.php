@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
     $category->save();
 
-    return redirect('categories')->with('messages', 'Category berhasil ditambahkan');
+    return redirect('admin/categories')->with('messages', 'Category berhasil ditambahkan');
     }
 
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
         $category->name = $validatedData['name'];
         $category->update(); // Simpan perubahan pada model Category
-        return redirect('categories')->with('messages', 'Category berhasil diupdate');
+        return redirect('admin/categories')->with('messages', 'Category berhasil diupdate');
     }
     public function destroy(int $category_id)
     {

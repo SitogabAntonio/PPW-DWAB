@@ -9,7 +9,7 @@
                 <h4>Edit Category</h4>
             </div>
             <div class="card-body">
-                <form action="{{ url('categories/' . $category->id) }}" method="post">
+                <form action="{{ url('admin/categories/' . $category->id) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="mb-3">

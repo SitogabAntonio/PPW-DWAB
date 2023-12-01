@@ -55,9 +55,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{url('dashboard')}}" class="dropdown-item">Dashboard</a>
-                                    <a href="{{url('categories')}}" class="dropdown-item">Categories</a>
-                                    <a href="{{url('post')}}" class="dropdown-item">Post</a>
+                                    <a href="{{url('admin/profile')}}" class="dropdown-item">{{Auth::user()->name}}</a>
+                                    <a href="{{url('admin/dashboard')}}" class="dropdown-item">Dashboard</a>
+                                    <a href="{{url('admin/categories')}}" class="dropdown-item">Categories</a>
+                                    <a href="{{url('admin/post')}}" class="dropdown-item">Post</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

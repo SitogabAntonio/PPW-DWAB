@@ -7,7 +7,7 @@
                 Tambah Post
             </div>
             <div class="card-body">
-                <form action="{{ url('post') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('admin/post') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">

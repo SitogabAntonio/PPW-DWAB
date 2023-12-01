@@ -9,7 +9,7 @@
                 <h4>Create Category</h4>
             </div>
             <div class="card-body">
-                <form action="{{ url('categories') }}" method="post"> <!-- Corrected line -->
+                <form action="{{ url('admin/categories') }}" method="post"> <!-- Corrected line -->
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Category Name</label>

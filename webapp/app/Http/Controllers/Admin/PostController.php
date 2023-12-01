@@ -52,7 +52,7 @@
             }
 
             $post->save();
-            return redirect('post')->with('message', 'Post berhasil ditambahkan');
+            return redirect('admin/post')->with('message', 'Post berhasil ditambahkan');
         }
 
         public function edit(Post $post)
@@ -83,7 +83,7 @@
             }
 
             $post->update(); // Menggunakan save() daripada update()
-            return redirect('post')->with('message', 'Post berhasil diupdate');
+            return redirect('admin/post')->with('message', 'Post berhasil diupdate');
         }
 
         public function destroy(int $post_id){
