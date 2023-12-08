@@ -15,7 +15,7 @@
     {
         public function index()
         {
-            $posts = Post::orderBy('id', 'desc')->paginate(5);
+            $posts = Post::orderBy('id', 'desc')->paginate(15);
             return view('admin.post.index', compact('posts'));
         }
 
@@ -52,7 +52,7 @@
             }
 
             $post->save();
-            return redirect('admin/post')->with('message', 'Post berhasil ditambahkan');
+            return redirect('/find-your-communities')->with('message', 'Post berhasil ditambahkan');
         }
 
         public function edit(Post $post)

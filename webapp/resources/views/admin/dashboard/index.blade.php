@@ -71,7 +71,7 @@
             <h2>MEET YOUR FRIEND, FIND YOUR TRIBE</h2>
             <h3>Discover the magic of music in our vibrant community. Join us to share your passion, create harmonious
                 melodies, and make lasting musical connections!</h3>
-            <a href="/admin/categories" class="btn"> FIND YOUR COMMUNITIES </a>
+            <a href="{{ route('subcategory.index') }}" class="btn"> FIND YOUR COMMUNITIES </a>
         </div>
 
         <div class="home-img">
