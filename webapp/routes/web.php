@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\Admin\PostController;
 
 //Route HomePage
 Route::get('/', [HomeController::class,'index']);
-Route::get('/post/{post_id}', [HomeController::class,'show']);
+Route::get('/post/{post_id}', [SubcategoryController::class,'show']);
 
 //Route Middleware
 Auth::routes();
@@ -43,7 +44,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function (){
     Route::put('/post/{post}', [PostController::class, 'update']);
     Route::get('/post/delete/{post_id}', [PostController::class,'destroy']);
 
+
 });
+
+Route::get('/find-your-communities', [SubcategoryController::class, 'index'])->name('subcategory.index');
+Route::get('/post/{post_slug}', [SubcategoryController::class, 'show'])->name('subcategory.show');
+
 
 // Route for the registration page
 Route::get('/register', function () {
