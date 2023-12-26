@@ -25,7 +25,7 @@ class Community extends Model
         return self::where('community_name', $community_name)->first();
 
     }
-   
+
     // Metode untuk membuat komunitas baru
     public static function createCommunity($data)
     {
@@ -35,19 +35,19 @@ class Community extends Model
     // Metode untuk mengupdate komunitas berdasarkan nama komunitas
     public static function updateCommunity($community_name, $data)
     {
-        
+
         if ($community) {
             $community->update($data);
             return $community;
         }
     return null;
     }
-   
+
     // Metode untuk menghapus komunitas berdasarkan nama komunitas
     public static function deleteCommunity($community_name)
     {
         $community = self::where('community_name', $community_name)->first();
-        
+
         if ($community) {
             $community->delete();
             return true;

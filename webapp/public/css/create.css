@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../image/Wallpaper.png") center center no-repeat;
+    background-size: cover;
+}
+
+.container {
+    width: 350px;
+    padding: 20px;
+    color: azure;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(51, 51, 51, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    text-align: center;
+    font-weight: 400;
+    font-size: 25px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+.form-box {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
+    padding: 15px; /* Sesuaikan padding sesuai kebutuhan */
+    border-radius: 10px; /* Sesuaikan radius border sesuai kebutuhan */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Efek bayangan untuk tampilan yang lebih menarik */
+}
+
+.card-body {
+    padding: 20px; /* Sesuaikan padding sesuai kebutuhan */
+}
+
+/* Gaya untuk setiap form box */
+.mb-3 {
+    margin-bottom: 15px; /* Sesuaikan jarak sesuai kebutuhan */
+}
+
+.form-select,
+.form-control,
+.form-check {
+    margin-bottom: 20px; /* Sesuaikan jarak sesuai kebutuhan */
+}
+
+.my-3 {
+    margin-top: 15px; /* Sesuaikan jarak sesuai kebutuhan */
+}
+
+/* Gaya untuk setiap form box */
+.mb-3 {
+    margin-bottom: 15px; /* Sesuaikan jarak sesuai kebutuhan */
+}
+
+/* Input transparan */
+.form-control {
+    width: 23em;
+    height: 35px;
+    background-color: rgba(
+        80,
+        79,
+        79,
+        0.5
+    ); /* Sesuaikan nilai alpha sesuai kebutuhan */
+    border: 1px solid #ccc; /* Sesuaikan gaya border sesuai kebutuhan */
+    border-radius: 5px;
+    color: white;
+}
+
+/* Gaya pesan kesalahan */
+.invalid-feedback {
+    color: #dc3545; /* Warna merah sesuai kebutuhan */
+}
+
+/* Gaya untuk <select> */
+select {
+    /* Reset */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 10px;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* Personalisasi */
+    width: 12em;
+    height: 25px;
+    padding: 0 4em 0 1em;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+            no-repeat right 0.8em center/1.4em,
+        linear-gradient(
+            to left,
+            rgba(255, 255, 255, 0.3) 3em,
+            rgba(255, 255, 255, 0.2) 3em
+        );
+    color: rgb(255, 255, 255);
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* <option> colors */
+    /* Remove focus outline */
+    /* Remove IE arrow */
+}
+
+/* Gaya untuk <option> */
+select option {
+    color: inherit;
+    background-color: black;
+}
+
+/* Hilangkan outline saat <select> mendapat fokus */
+select:focus {
+    outline: none;
+}
+
+/* Hilangkan panah bawaan di IE */
+select::-ms-expand {
+    display: none;
+}
+
+/* Gaya untuk label "Title" */
+.title label {
+    font-size: 20px; /* Sesuaikan ukuran font sesuai kebutuhan */
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Gaya untuk input "Title" */
+.title input {
+    width: 100%; /* Agar input memenuhi lebar container */
+}
+
+/* Gaya untuk pesan kesalahan */
+.title .invalid-feedback {
+    display: block; /* Tampilkan pesan kesalahan */
+    font-size: 0.8em; /* Sesuaikan ukuran font pesan kesalahan sesuai kebutuhan */
+    color: red; /* Warna pesan kesalahan */
+}
+
+.custom-container input {
+    display: none;
+}
+
+.custom-container .custom-element {
+    height: 100px;
+    width: 150px;
+    border-radius: 6px;
+    border: 1px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease; /* Animasi transisi selama 0.3 detik */
+}
+
+.custom-container .custom-element:hover {
+    color: #de86de;
+    border: 1px dashed #de86de;
+    transform: scale(1.2); /* Memperbesar elemen saat dihover */
+}

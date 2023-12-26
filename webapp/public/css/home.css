@@ -233,6 +233,18 @@ strong {
     text-decoration: none;
 }
 
+a.round-button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff; /* Warna teks */
+    border-radius: 50px; /* Radius sudut untuk membuat bentuk bulat */
+    transition: background-color 0.3s ease; /* Efek transisi pada perubahan warna latar belakang */
+}
+
+a.round-button:hover {
+    background-color: #2980b9; /* Warna latar belakang saat dihover */
+}
+
 /* Tambahkan gaya ini di bagian head atau dalam file CSS terpisah */
 .dropdown-item {
     color: white; /* Mengatur warna teks menjadi putih */

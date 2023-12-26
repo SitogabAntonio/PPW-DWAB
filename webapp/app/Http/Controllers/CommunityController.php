@@ -39,7 +39,7 @@ class CommunityController extends Controller
                 'error' => 'community not found',
             ], 404);
         }
-        
+
     }
 
     public function store(Request $request): JsonResponse

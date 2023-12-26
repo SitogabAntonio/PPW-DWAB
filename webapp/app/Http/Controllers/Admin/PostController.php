@@ -26,34 +26,37 @@
         }
 
         public function store(PostFormRequest $request)
-        {
-            $validatedData = $request->validated();
-            $code = random_int(10, 99);
-            $slug = Str::slug($validatedData['title']) . "-" . $code;
+{
+    $validatedData = $request->validated();
+    $code = random_int(10, 99);
+    $originalSlug = Str::slug($validatedData['title']);
+    $slug = $originalSlug . "-" . $code;
 
-            $post = new Post();
-            $post->title = $validatedData['title'];
-            $post->category_id = $validatedData['category_id'];
-            $post->description = $validatedData['description'];
-            $post->status = $validatedData['status'];
+    $post = new Post();
+    $post->title = $validatedData['title'];
+    $post->category_id = $validatedData['category_id'];
+    $post->description = $validatedData['description'];
+    $post->status = $validatedData['status'];
 
-            if (Post::where('slug', $slug)->exists()) {
-                $post->slug = $slug;
-            } else {
-                $post->slug = Str::slug($validatedData['title']);
-            }
+    if (Post::where('slug', $originalSlug)->exists()) {
+        $post->slug = $slug;
+    } else {
+        $post->slug = $originalSlug;
+    }
 
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $ext = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $ext;
-                $file->move('uploads/post/', $filename);
-                $post->image = $filename;
-            }
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $ext;
+        $file->move('uploads/post/', $filename);
+        $post->image = $filename;
+    }
 
-            $post->save();
-            return redirect('/find-your-communities')->with('message', 'Post berhasil ditambahkan');
-        }
+    $post->save();
+
+    return redirect('/find-your-communities')->with('message', 'Post berhasil ditambahkan');
+}
+
 
         public function edit(Post $post)
         {

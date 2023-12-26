@@ -77,7 +77,7 @@ class UsersTableSeeder extends Seeder
                 'no_telp' => '081234567890',
                 'gender' => 'Pria',
                 'status' => 'Mahasiswa IT Del'
-            ]          
+            ]
         ];
 
         // Masukkan data Users ke database

@@ -82,15 +82,23 @@
                         <span class="material-symbols-sharp active">light_mode</span>
                         <span class="material-symbols-sharp">nightlight</span>
                     </div>
-                    <div class="profile">
+                    <div class="profile" onclick="redirectToProfile()">
                         <div class="info">
-                            <p>Haii <b>{{Auth::user()->name}}</b></p>
+                            <p>Haii <b>{{ Auth::user()->name }}</b></p>
                             <small class="text-muted">User</small>
                         </div>
-                        <div class="profile-photo">
-                            <img src="image/weny.jpg" id="profileImage">
+                        <div class="profile" onclick="redirectToProfile()">
+                            <img src="{{ asset('uploads/profile_path/' . auth()->user()->profile_path) }}" alt="Profile Image">
                         </div>
                     </div>
+
+                    <script>
+                        function redirectToProfile() {
+                            // Redirect ke halaman edit profile atau lakukan aksi sesuai kebutuhan
+                            window.location.href = "{{ route('profile.edit', auth()->user()) }}";
+                        }
+                    </script>
+
                 </div>
                 <div class="recent-updates">
                     <h2>Friends May You Know</h2>

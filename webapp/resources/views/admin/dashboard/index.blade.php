@@ -22,8 +22,16 @@
             <li> <a href="#review">Service & Support</a></li>
 
 
-            <div class="profile">
-            <img src="{{ asset('image/weny.jpg') }}" alt="Profile Image" onclick="window.location.href = 'profile'">
+            <div class="profile" onclick="editProfile()">
+                <img class="profile-image" src="{{ asset('uploads/profile_path/' . auth()->user()->profile_path) }}" alt="Profile Image">
+            </div>
+
+            <script>
+                function editProfile() {
+                    // Redirect ke halaman edit profile atau lakukan aksi sesuai kebutuhan
+                    window.location.href = "{{ route('profile.edit', auth()->user()) }}";
+                }
+            </script>
 
         </div>
         </ul>

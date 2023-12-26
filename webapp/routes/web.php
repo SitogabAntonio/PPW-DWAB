@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function (){
 
 
 });
+
+Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/find-your-communities', [SubcategoryController::class, 'index'])->name('subcategory.index');
 Route::get('/post/{post_slug}', [SubcategoryController::class, 'show'])->name('subcategory.show');

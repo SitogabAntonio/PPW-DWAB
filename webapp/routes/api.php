@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommunityController;
-
+use App\Http\Controllers\CategoryAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +26,6 @@ Route::apiResource('users', UserController::class);
 
 // Route for CommunityController
 Route::apiResource('communities', CommunityController::class);
+
+// Route for CategoryController
+Route::apiResource('categories', CategoryAPIController::class);
